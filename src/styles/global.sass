@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit")
+@import "variables.sass"
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  font-family: "Kanit", sans-serif
+  ::-webkit-scrollbar
+    display: none
+body
+    background-color: var(--bgcolor)
+    color: var(--fgcolor)
+    transition: 0.5s
+input[type="text"], textarea
+  width: 100%
+  border: 2px solid transparent
+  border-radius: 6px
+  padding: 5px
+  font-size: 80%
+  outline: none
+
+.error
+  border: 2px solid var(--error-color) !important
+  
+[disabled]
+  cursor: not-allowed
+  filter: brightness(25%)

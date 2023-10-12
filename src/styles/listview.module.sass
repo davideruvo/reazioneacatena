@@ -1,0 +1,77 @@
+.main ul
+    list-style: none
+
+.rows
+    overflow-y: auto
+
+.row
+    border-radius: var(--border-radius)
+    margin: 5px
+    padding: 8px
+    cursor: default
+    .header &
+        background: var(--primary-bgcolor)
+        color: var(--primary-fgcolor)
+        padding-top: 4px
+        padding-bottom: 4px
+    .actions &
+        padding: 0
+    .rows &
+        background: var(--secondary-bgcolor)
+        color: var(--secondary-fgcolor)
+        transition: 0.3s
+        cursor: pointer
+        &:hover
+            margin-left: 0
+            margin-right: 0
+    .rows &:first-child
+        margin-top: 0
+    .rows &:last-child
+        margin-bottom: 0
+            
+.sidebar
+    background: var(--secondary-bgcolor)
+    color: var(--secondary-fgcolor)
+    position: fixed
+    top: 0
+    left: 100%
+    bottom: 0
+    width: 80vw
+    padding: 20px
+    cursor: default
+    transition: 0.5s
+    &.active
+        left: 20vw
+
+.fields
+    display: flex
+    align-items: center
+    .sidebar &
+        flex-direction: column
+        align-items: start
+    
+.field
+    display: flex
+    flex-direction: column
+    align-items: center
+    overflow: hidden
+    text-overflow: ellipsis
+    &.text, &.longtext
+        align-items: start
+        span
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+            width: 100%
+    .sidebar &
+        align-items: start
+        &:not(:first-child)
+            padding-top: 20px
+        &:last-child
+            padding-bottom: 20px
+    
+.search
+    padding: 0 5px
+    input
+        padding-top: 2px 
+        padding-bottom: 2px

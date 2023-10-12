@@ -1,0 +1,17 @@
+.main
+  width: var(--loader-size)
+  height: var(--loader-size)
+  background: var(--loader-color)
+  animation: rotate 1s linear infinite
+
+@keyframes rotate
+  0%
+    transform: rotate(0deg) scale(0.2)
+    border-radius: 20%
+  50%
+    transform: rotate(180deg) scale(1.5)
+    border-radius: 20%
+
+  100%
+    transform: rotate(360deg) scale(0.2)
+    border-radius: 20%
