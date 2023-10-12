@@ -4,14 +4,5 @@
   },
   "players": [],
   "rules": [],
-  "games": [
-    {
-      "id": "il6koE",
-      "title": "1",
-      "n": "1",
-      "words": "1",
-      "ruleName": "a",
-      "rule": null
-    }
-  ]
+  "games": []
 }

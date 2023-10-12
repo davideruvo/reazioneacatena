@@ -13,13 +13,7 @@ const handler = (req, res) => {
       res.status(200).json({ result: true });
       break;
     case "DELETE":
-      const toDelete = //entity.getByKey();
-        entity.exists(req.query.id)
-          ? entity
-              .get({ nolookup: true })
-              .filter((x) => entity.getKey(x) === req.query.id)[0]
-          : null;
-
+      const toDelete = entity.getByKey();
       if (toDelete) {
         entity.remove(toDelete);
         res.status(200).json({ result: true });

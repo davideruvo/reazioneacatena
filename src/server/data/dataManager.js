@@ -70,7 +70,8 @@ const collection = function ({
     self.set(...self.get(), ...items);
     return items.map((x) => self.getKey(x));
   };
-  self.remove = (item) => self.set(...self.get().filter((x) => x !== item));
+  self.remove = (item) =>
+    self.set(...self.get().filter((x) => self.getKey(x) !== item.getKey(x)));
   self.filterBy = (filter) =>
     self
       .get()
