@@ -221,7 +221,7 @@ const ListViewDetail = ({
   const handleChange = (key, target) => {
     
     setDetail((detail) => {
-      const value = target.tagName === 'SELECT' ? target.options.filter(x  => x)'':  target.value ;
+      const value = target.tagName === 'SELECT' ? target.options.filter(x  => x.selected)?[0].value === '1' :  target.value ;
       const newValues = { ...detail.values, [key]: value };
       return {
         values: newValues,

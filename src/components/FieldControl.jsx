@@ -48,8 +48,12 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
             onChange={(e) => handleChange(field.key, e.target)}
             className={"boolSelect"}
           >
-            <option value="1">Sì</option>
-            <option value="0">No</option>
+            <option value="1" selected={value}>
+              Sì
+            </option>
+            <option value="0" selected={!value}>
+              No
+            </option>
           </select>
         ) : (
           <span title={value}>{value ? "Sì" : "No"}</span>
