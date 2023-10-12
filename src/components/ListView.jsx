@@ -23,7 +23,7 @@ const ListView = ({
             (k) =>
               //La ricerca avviene su tutti i campi testuali mostrati in lista
               fields.listView.includes(k) &&
-              ["text", "longtext"].includes(
+              ["text", "longtext", "list"].includes(
                 fields.list.find((f) => f.key === k).type,
               ) &&
               x[k]?.toLowerCase().includes(filter.toLowerCase()),

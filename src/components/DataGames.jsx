@@ -5,7 +5,7 @@ import useFetch, { getReq } from "#utils/useFetch";
 
 const DataGames = ({ offsetBottom }) => {
   const { response: responseGet, doFetch: doGet } = useFetch();
-  const [rules, setRules] = React.useState({});
+  const [rules, setRules] = React.useState(null);
   React.useEffect(() => {
     doGet(getReq(`/api/rules/get`, { sort: "name" }));
   }, []);
@@ -34,14 +34,14 @@ const DataGames = ({ offsetBottom }) => {
         key: "n",
         des: "N",
         type: "number",
-        maxLength: 1,
+        maxLength: 2,
       },
       {
         key: "gameType",
         des: "Tipo",
         type: "list",
         width: 4,
-        list: rules,
+        values: rules,
       },
       {
         key: "words",

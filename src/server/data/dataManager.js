@@ -37,8 +37,8 @@ const dataObject = function ({ key, defaultValue, fnGetLookups }) {
   self.getLookups = fnGetLookups;
   self.get = (options) => {
     let result = db.get(key);
-    const { sort, wLookup } = options ?? {};
-    if (wLookup && typeof self.getLookups === "function")
+    const { sort, lookup } = options ?? {};
+    if (lookup && typeof self.getLookups === "function")
       result = db.get(key).map((x) => ({ ...x, ...self.getLookups(x) }));
     if (sort) result = result.sort((a, b) => compare(a, b, sort));
     return result;

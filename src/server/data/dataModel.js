@@ -40,7 +40,7 @@ const rules = new collection({
 
 const games = new collection({
   key: "games",
-  fnNew: ({ title, n, words, ruleName }) => ({
+  fnNew: ({ title, n, words, gameType }) => ({
     id: uid(),
     title: title ?? "",
     n: n ?? 0,

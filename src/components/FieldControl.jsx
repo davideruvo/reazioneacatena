@@ -34,7 +34,14 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
           <input
             type="text"
             placeholder={field.des}
-            onChange={(e) => handleChange(field.key, e.target.value)}
+            onChange={(e) =>
+              handleChange(
+                field.key,
+                e.target.value === "" || isNaN(e.target.value)
+                  ? ""
+                  : Number(e.target.value),
+              )
+            }
             maxLength={field.maxLength}
             value={value}
             className={hasError ? "error" : ""}
@@ -69,7 +76,9 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
             ))}
           </select>
         ) : (
-          <span title={field.values[value]}>{field.values[value]}</span>
+          <span title={field.values ? field.values[value] : ""}>
+            {field.values ? field.values[value] : ""}
+          </span>
         ))}
       {field.type === "url" &&
         (editMode ? (

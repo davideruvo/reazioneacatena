@@ -4,41 +4,62 @@
   },
   "players": [
     {
-      "id": "j8HvNr",
-      "name": "Squadra Gialla",
-      "color": "#ffc107",
-      "n": "1"
-    },
-    {
       "id": "8MCOtc",
       "name": "Squadra Rossa",
       "color": "#f44336",
-      "n": "2"
+      "n": 1
+    },
+    {
+      "id": "j8HvNr",
+      "name": "Squadra Blu",
+      "color": "#2196f3",
+      "n": 2
     }
   ],
   "rules": [
     {
-      "id": "S5tK0b",
-      "name": "1",
-      "des": "1",
-      "sequenceType": "alternate",
+      "id": "UiV16o",
+      "name": "Catena",
+      "des": "Una catena di parole in cui si alternano parole visibili e non visibili, di volta in volta si dovrà trovare l'anello mancante.",
+      "sequenceType": "Alternato",
       "playAll": false
+    },
+    {
+      "id": "dl0WUt",
+      "name": "Gallery",
+      "des": "Una sequenza di parole che vengono mostrate una dopo l'altra.",
+      "sequenceType": "Gallery",
+      "playAll": false
+    },
+    {
+      "id": "Y6lWL0",
+      "name": "Sequenza",
+      "des": "Una sequenza di parole, in cui è tutto vuoto tranne la prima e l'ultima parola.",
+      "sequenceType": "Vuoto",
+      "playAll": false
+    },
+    {
+      "id": "HmyYky",
+      "name": "Zip",
+      "des": "Una sequenza in cui sono visibili solo la prima e l'ultima parola ed è necessario indovinare contemporaneamente tutte le parole nel mezzo.",
+      "sequenceType": "Vuoto",
+      "playAll": true
     }
   ],
   "games": [
     {
-      "id": "4TZDuL",
-      "title": "1111",
-      "n": "1",
-      "words": "1",
-      "ruleName": "1"
+      "id": "dTfO8I",
+      "title": "Reazione a catena",
+      "n": 12,
+      "words": "asd\nefefef\nfe\nf\nefef",
+      "gameType": "Catena"
     },
     {
-      "id": "GuaJYc",
-      "title": "2222",
-      "n": "2",
-      "words": "2",
-      "ruleName": "2"
+      "id": "KdTUWX",
+      "title": "L'intesa vincente",
+      "n": 20,
+      "words": "Casa\nCane\nRoma\nMilano",
+      "gameType": "Gallery"
     }
   ]
 }
