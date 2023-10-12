@@ -17,7 +17,7 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
         ) : (
           <span title={value}>{value}</span>
         ))}
-        {field.type === "longtext" &&
+      {field.type === "longtext" &&
         (editMode ? (
           <textarea
             rows={5}
@@ -29,20 +29,20 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
         ) : (
           <span title={value}>{value}</span>
         ))}
-        {field.type === "number" &&
+      {field.type === "number" &&
         (editMode ? (
           <input
             type="text"
             placeholder={field.des}
             onChange={(e) => handleChange(field.key, e.target)}
-            maxlength={field.maxlength}
+            maxLength={field.maxLength}
             value={value}
             className={hasError ? "error" : ""}
           />
         ) : (
           <span title={value}>{value}</span>
         ))}
-        {field.type === "url" &&
+      {field.type === "url" &&
         (editMode ? (
           <input
             type="text"
@@ -53,18 +53,22 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
           />
         ) : (
           <span>
-            <Icon ico="arrow-up-right-from-square" title={value} onClick={(e)=>{
-              e.stopPropagation();
-              window.open(value);
-              }} />
+            <Icon
+              ico="arrow-up-right-from-square"
+              title={value}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(value);
+              }}
+            />
           </span>
         ))}
-        {field.type === "color" &&
+      {field.type === "color" &&
         (editMode ? (
           <ColorPicker
             color={value}
             size={24}
-            onChange={(color) => handleChange(field.key, {value:color})}
+            onChange={(color) => handleChange(field.key, { value: color })}
             className={hasError ? "error" : ""}
           />
         ) : (

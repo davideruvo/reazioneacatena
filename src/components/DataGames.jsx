@@ -18,7 +18,7 @@ const DataGames = ({ offsetBottom }) => {
         key: "n",
         des: "N",
         type: "number",
-        maxlength: 1,
+        maxLength: 1,
       },
       {
         key: "ruleName",

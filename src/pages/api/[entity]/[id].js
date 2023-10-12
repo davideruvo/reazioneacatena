@@ -2,7 +2,8 @@ import { getByName } from "#server/data/dataModel";
 
 const handler = (req, res) => {
   const entity = getByName(req.query.entity);
-  if (entity === null) res.status(500).json({ result: false, error: "Invalid call" });
+  if (entity === null)
+    res.status(500).json({ result: false, error: "Invalid call" });
   switch (req.method) {
     case "GET":
       res.status(200).json(entity.getByKey(req.query.id));
@@ -12,6 +13,7 @@ const handler = (req, res) => {
       res.status(200).json({ result: true });
       break;
     case "DELETE":
+      debugger;
       const toDelete = entity.getByKey(req.query.id);
       if (toDelete) {
         entity.remove(toDelete);

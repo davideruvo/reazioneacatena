@@ -18,7 +18,7 @@ const DataRules = ({ offsetBottom }) => {
         key: "length",
         des: "Lunghezza",
         type: "number",
-        maxlength: 2,
+        maxLength: 2,
         width: 2,
       },
       {

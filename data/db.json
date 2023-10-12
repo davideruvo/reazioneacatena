@@ -2,33 +2,16 @@
   "configuration": {
     "useDarkTheme": true
   },
-  "players": [
-    {
-      "id": "JadLx5",
-      "name": "A",
-      "color": "#9c27b0"
-    },
-    {
-      "id": "KRaPHh",
-      "name": "sdfaf",
-      "color": "#f44336"
-    }
-  ],
-  "rules": [
-    {
-      "id": "lR2pJ2",
-      "name": "Catena",
-      "length": "10",
-      "visible": "0,9"
-    }
-  ],
+  "players": [],
+  "rules": [],
   "games": [
     {
       "id": "zlQtng",
       "title": "Cina",
-      "n": "oj",
+      "n": "1",
       "words": "asdf\nasdfa\nasdfa\nsdfasfd\nasfd",
-      "ruleName": "Toriino"
+      "ruleName": "Torino",
+      "rule": null
     }
   ]
 }
