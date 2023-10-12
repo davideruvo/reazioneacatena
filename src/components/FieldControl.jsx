@@ -42,6 +42,18 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
         ) : (
           <span title={value}>{value}</span>
         ))}
+      {field.type === "bool" &&
+        (editMode ? (
+          <select
+            onChange={(e) => handleChange(field.key, e.target)}
+            className={"boolSelect"}
+          >
+            <option value="1">Sì</option>
+            <option value="0">No</option>
+          </select>
+        ) : (
+          <span title={value}>{value ? "Sì" : "No"}</span>
+        ))}
       {field.type === "url" &&
         (editMode ? (
           <input

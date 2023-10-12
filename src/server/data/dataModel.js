@@ -19,20 +19,23 @@ export const getByName = (key) => {
 
 const players = new collection({
   key: "players",
-  fnNew: ({ name, color }) => ({
+  fnNew: ({ name, color, n }) => ({
     id: uid(),
     name: name ?? "",
     color: color ?? "",
+    n: n ?? 0,
   }),
 });
 
 const rules = new collection({
   key: "rules",
-  fnNew: ({ name, length, visible }) => ({
+  fnNew: ({ name, des, length, visible, playAll }) => ({
     id: uid(),
     name: name ?? "",
+    des: des ?? "",
     length: length ?? 0,
     visible: visible ?? "",
+    playAll: playAll ?? false,
   }),
 });
 
@@ -46,6 +49,6 @@ const games = new collection({
     ruleName: ruleName ?? "",
   }),
   fnGetLookups: (x) => ({
-    rule: rules.findBy({ name: x }),
+    rule: rules.findBy({ name: x.ruleName }),
   }),
 });

@@ -15,6 +15,12 @@ const DataRules = ({ offsetBottom }) => {
         width: 4,
       },
       {
+        key: "des",
+        des: "Descrizione",
+        type: "longtext",
+        optional: true,
+      },
+      {
         key: "length",
         des: "Lunghezza",
         type: "number",
@@ -25,15 +31,21 @@ const DataRules = ({ offsetBottom }) => {
         key: "visible",
         des: "Visibili",
         type: "text",
-        width: 4,
+        width: 2,
+      },
+      {
+        key: "playAll",
+        des: "Tutto insieme",
+        type: "bool",
+        width: 2,
       },
     ],
     key: "id",
     title: "name",
     subTitle: "id",
     sort: "name",
-    listView: ["name", "length", "visible"],
-    detailView: ["name", "length", "visible"],
+    listView: ["name", "length", "visible", "playAll"],
+    detailView: ["name", "des", "length", "visible", "playAll"],
   };
 
   return (

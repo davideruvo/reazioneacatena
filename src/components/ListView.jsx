@@ -207,6 +207,7 @@ const ListViewDetail = ({
     // if (target.value !== "" regex && !regex.test(target.value)) return;
     return Object.keys(values).filter(
       (k) =>
+        fields.list.find((f) => f.key === k)?.type !== "bool" &&
         !fields.list.find((f) => f.key === k)?.optional &&
         (typeof values[k] === "undefined" || values[k] === ""),
     );
@@ -218,8 +219,10 @@ const ListViewDetail = ({
   const [confirm, setConfirm] = React.useState(null);
 
   const handleChange = (key, target) => {
+    
     setDetail((detail) => {
-      const newValues = { ...detail.values, [key]: target.value };
+      const value = target.tagName === 'SELECT' ? target.options.filter(x  => x)'':  target.value ;
+      const newValues = { ...detail.values, [key]: value };
       return {
         values: newValues,
         errors: findErrors(newValues),

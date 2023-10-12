@@ -18,15 +18,22 @@ const DataPlayers = ({ offsetBottom }) => {
         key: "name",
         des: "Nome",
         type: "text",
-        width: 9,
+        width: 8,
+      },
+      {
+        key: "n",
+        des: "N",
+        type: "number",
+        maxLength: 1,
+        width: 1,
       },
     ],
     key: "id",
     title: "name",
     subTitle: "id",
-    sort: "name",
-    listView: ["color", "name"],
-    detailView: ["color", "name"],
+    sort: "n",
+    listView: ["color", "name", "n"],
+    detailView: ["color", "name", "n"],
   };
 
   return (

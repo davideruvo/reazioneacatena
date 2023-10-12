@@ -6,8 +6,8 @@ const handler = (req, res) => {
     res.status(500).json({ result: false, error: "Invalid call" });
   switch (req.method) {
     case "GET":
-      const { sort, nolookup } = req.query;
-      res.status(200).json(entity.get({ sort, nolookup }));
+      const { sort, wLookup } = req.query;
+      res.status(200).json(entity.get({ sort, wLookup }));
       break;
     default:
       res.status(500).json({ result: false, error: "Invalid call" });

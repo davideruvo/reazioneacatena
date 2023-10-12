@@ -37,8 +37,8 @@ const dataObject = function ({ key, defaultValue, fnGetLookups }) {
   self.getLookups = fnGetLookups;
   self.get = (options) => {
     let result = db.get(key);
-    const { sort, nolookup } = options ?? {};
-    if (!nolookup && typeof self.getLookups === "function")
+    const { sort, wLookup } = options ?? {};
+    if (wLookup && typeof self.getLookups === "function")
       result = db.get(key).map((x) => ({ ...x, ...self.getLookups(x) }));
     if (sort) result = result.sort((a, b) => compare(a, b, sort));
     return result;
@@ -70,7 +70,8 @@ const collection = function ({
     self.set(...self.get(), ...items);
     return items.map((x) => self.getKey(x));
   };
-  self.remove = (item) => self.set(...self.get().filter((x) => x !== item));
+  self.remove = (item) =>
+    self.set(...self.get().filter((x) => self.getKey(x) !== self.getKey(item)));
   self.filterBy = (filter) =>
     self
       .get()

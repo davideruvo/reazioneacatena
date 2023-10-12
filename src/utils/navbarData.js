@@ -1,8 +1,8 @@
 const navbarData = [
-  { cod: "games", des: "Giochi", ico: "calendar-days" },
+  { cod: "players", des: "Squadre", ico: "people-arrows" },
   { cod: "play", des: "Gioca", ico: "circle-play" },
-  { cod: "players", des: "Giocatori", ico: "calendar-days" },
-  { cod: "rules", des: "Regole", ico: "crosshairs" },
+  { cod: "rules", des: "Regole", ico: "rectangle-list" },
+  { cod: "games", des: "Giochi", ico: "list-ul" },
 ];
 
 export default navbarData;
