@@ -6,7 +6,7 @@
     {
       "id": "j8HvNr",
       "name": "Squadra Gialla",
-      "color": "#ffeb3b",
+      "color": "#ffc107",
       "n": "1"
     },
     {
@@ -18,30 +18,11 @@
   ],
   "rules": [
     {
-      "id": "GcQJgr",
-      "name": "a",
-      "des": "a",
-      "length": "a",
-      "visible": "a",
-      "playAll": "0"
-    },
-    {
-      "id": "2SJK5A",
-      "name": "Sequenza10",
-      "length": "10",
-      "visible": "0,9"
-    },
-    {
-      "id": "fUt7Ar",
-      "name": "Sequenza8",
-      "length": "8",
-      "visible": "0,7"
-    },
-    {
-      "id": "lPgkMC",
-      "name": "Zip",
-      "length": "4",
-      "visible": "0,4"
+      "id": "S5tK0b",
+      "name": "1",
+      "des": "1",
+      "sequenceType": "alternate",
+      "playAll": false
     }
   ],
   "games": [

@@ -1,6 +1,22 @@
+import React from "react";
+
 import DataManager from "#components/DataManager";
+import useFetch, { getReq } from "#utils/useFetch";
 
 const DataGames = ({ offsetBottom }) => {
+  const { response: responseGet, doFetch: doGet } = useFetch();
+  const [rules, setRules] = React.useState({});
+  React.useEffect(() => {
+    doGet(getReq(`/api/rules/get`, { sort: "name" }));
+  }, []);
+  React.useEffect(() => {
+    if (responseGet) {
+      setRules(
+        Object.assign({}, ...responseGet.map((x) => ({ [x.name]: x.name }))),
+      );
+    }
+  }, [responseGet]);
+
   const fields = {
     list: [
       {
@@ -21,10 +37,11 @@ const DataGames = ({ offsetBottom }) => {
         maxLength: 1,
       },
       {
-        key: "ruleName",
-        des: "Regole",
-        type: "text",
+        key: "gameType",
+        des: "Tipo",
+        type: "list",
         width: 4,
+        list: rules,
       },
       {
         key: "words",
@@ -34,10 +51,10 @@ const DataGames = ({ offsetBottom }) => {
     ],
     key: "id",
     title: "title",
-    subTitle: "ruleName",
+    subTitle: "gameType",
     sort: "n",
-    listView: ["title", "ruleName", "n"],
-    detailView: ["title", "n", "ruleName", "words"],
+    listView: ["title", "gameType", "n"],
+    detailView: ["title", "n", "gameType", "words"],
   };
 
   return (

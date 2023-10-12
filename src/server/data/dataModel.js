@@ -29,12 +29,11 @@ const players = new collection({
 
 const rules = new collection({
   key: "rules",
-  fnNew: ({ name, des, length, visible, playAll }) => ({
+  fnNew: ({ name, des, sequenceType, playAll }) => ({
     id: uid(),
     name: name ?? "",
     des: des ?? "",
-    length: length ?? 0,
-    visible: visible ?? "",
+    sequenceType: sequenceType ?? "",
     playAll: playAll ?? false,
   }),
 });
@@ -46,9 +45,9 @@ const games = new collection({
     title: title ?? "",
     n: n ?? 0,
     words: words ?? "",
-    ruleName: ruleName ?? "",
+    gameType: gameType ?? "",
   }),
   fnGetLookups: (x) => ({
-    rule: rules.findBy({ name: x.ruleName }),
+    rules: rules.findBy({ name: x.gameType }),
   }),
 });

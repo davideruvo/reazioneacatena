@@ -10,7 +10,7 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
           <input
             type="text"
             placeholder={field.des}
-            onChange={(e) => handleChange(field.key, e.target)}
+            onChange={(e) => handleChange(field.key, e.target.value)}
             value={value}
             className={hasError ? "error" : ""}
           />
@@ -22,7 +22,7 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
           <textarea
             rows={5}
             placeholder={field.des}
-            onChange={(e) => handleChange(field.key, e.target)}
+            onChange={(e) => handleChange(field.key, e.target.value)}
             value={value}
             className={hasError ? "error" : ""}
           />
@@ -34,7 +34,7 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
           <input
             type="text"
             placeholder={field.des}
-            onChange={(e) => handleChange(field.key, e.target)}
+            onChange={(e) => handleChange(field.key, e.target.value)}
             maxLength={field.maxLength}
             value={value}
             className={hasError ? "error" : ""}
@@ -45,25 +45,38 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
       {field.type === "bool" &&
         (editMode ? (
           <select
-            onChange={(e) => handleChange(field.key, e.target)}
-            className={"boolSelect"}
+            onChange={(e) => handleChange(field.key, e.target.value === "1")}
+            value={value ? "1" : "0"}
           >
-            <option value="1" selected={value}>
-              Sì
-            </option>
-            <option value="0" selected={!value}>
-              No
-            </option>
+            <option value="1">Sì</option>
+            <option value="0">No</option>
           </select>
         ) : (
-          <span title={value}>{value ? "Sì" : "No"}</span>
+          <span title={value ? "Sì" : "No"}>{value ? "Sì" : "No"}</span>
+        ))}
+      {field.type === "list" &&
+        (editMode ? (
+          <select
+            onChange={(e) => handleChange(field.key, e.target.value)}
+            value={value}
+            className={hasError ? "error" : ""}
+          >
+            <option value=""></option>
+            {Object.keys(field.values).map((k) => (
+              <option key={k} value={k}>
+                {field.values[k]}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <span title={field.values[value]}>{field.values[value]}</span>
         ))}
       {field.type === "url" &&
         (editMode ? (
           <input
             type="text"
             placeholder={field.des}
-            onChange={(e) => handleChange(field.key, e.target)}
+            onChange={(e) => handleChange(field.key, e.target.value)}
             value={value}
             className={hasError ? "error" : ""}
           />
@@ -84,7 +97,7 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
           <ColorPicker
             color={value}
             size={24}
-            onChange={(color) => handleChange(field.key, { value: color })}
+            onChange={(color) => handleChange(field.key, color)}
             className={hasError ? "error" : ""}
           />
         ) : (

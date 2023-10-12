@@ -21,17 +21,11 @@ const DataRules = ({ offsetBottom }) => {
         optional: true,
       },
       {
-        key: "length",
-        des: "Lunghezza",
-        type: "number",
-        maxLength: 2,
-        width: 2,
-      },
-      {
-        key: "visible",
-        des: "Visibili",
-        type: "text",
-        width: 2,
+        key: "sequenceType",
+        des: "Tipo",
+        type: "list",
+        width: 4,
+        values: { empty: "Vuoto", alternate: "Alternato" },
       },
       {
         key: "playAll",
@@ -44,8 +38,8 @@ const DataRules = ({ offsetBottom }) => {
     title: "name",
     subTitle: "id",
     sort: "name",
-    listView: ["name", "length", "visible", "playAll"],
-    detailView: ["name", "des", "length", "visible", "playAll"],
+    listView: ["name", "sequenceType", "playAll"],
+    detailView: ["name", "des", "sequenceType", "playAll"],
   };
 
   return (

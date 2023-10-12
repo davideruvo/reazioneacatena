@@ -57,7 +57,15 @@ const ButtonConfirmBar = ({ text, onConfirm, onCancel, size, style }) => {
   );
 };
 
-const ColorDisplay = ({ color, width, height, margin, title, style, onClick }) => {
+const ColorDisplay = ({
+  color,
+  width,
+  height,
+  margin,
+  title,
+  style,
+  onClick,
+}) => {
   return (
     <div
       className={styles.colorDisplay}
@@ -67,9 +75,8 @@ const ColorDisplay = ({ color, width, height, margin, title, style, onClick }) =
         width: width ? width : height,
         height: height ? height : width,
         margin: margin ? margin : 0,
-        ...style
-      }
-      }
+        ...style,
+      }}
       onClick={onClick}
     ></div>
   );
@@ -77,15 +84,22 @@ const ColorDisplay = ({ color, width, height, margin, title, style, onClick }) =
 
 const ColorPicker = ({ color, size, className, onChange }) => {
   const [open, setOpen] = React.useState(false);
-  const handleChange=(color)=>{onChange(color.hex)};
+  const handleChange = (color) => {
+    onChange(color.hex);
+  };
 
   return (
     <div className={`${className}`}>
       {open ? (
         <div className={`${styles.colorPicker}`}>
-          <Icon title="Chiudi" ico="circle-xmark" icoStyle="regular" onClick={()=>setOpen(false)} />
+          <Icon
+            title="Chiudi"
+            ico="circle-xmark"
+            icoStyle="regular"
+            onClick={() => setOpen(false)}
+          />
           <BlockPicker
-            color={color ?? '#000'}
+            color={color ?? "#000"}
             triangle="hide"
             width={null}
             colors={[
@@ -113,12 +127,15 @@ const ColorPicker = ({ color, size, className, onChange }) => {
         </div>
       ) : (
         <ColorDisplay
-            title="Modifica"
-            color={color}
-            width={size}
-            style={{cursor:'pointer', border: '2px solid var(--primary-bgcolor)'}}
+          title="Modifica"
+          color={color}
+          width={size}
+          style={{
+            cursor: "pointer",
+            border: "2px solid var(--primary-bgcolor)",
+          }}
           onClick={() => setOpen(true)}
-          />
+        />
       )}
     </div>
   );

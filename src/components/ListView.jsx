@@ -218,10 +218,9 @@ const ListViewDetail = ({
   });
   const [confirm, setConfirm] = React.useState(null);
 
-  const handleChange = (key, target) => {
+  const handleChange = (key, value) => {
     
     setDetail((detail) => {
-      const value = target.tagName === 'SELECT' ? target.options.filter(x  => x.selected)?[0].value === '1' :  target.value ;
       const newValues = { ...detail.values, [key]: value };
       return {
         values: newValues,
