@@ -3,13 +3,6 @@
     "useDarkTheme": true
   },
   "players": [],
-  "rules": [
-    {
-      "id": "RYo77P",
-      "name": "1",
-      "length": "1",
-      "visible": "1"
-    }
-  ],
+  "rules": [],
   "games": []
 }
