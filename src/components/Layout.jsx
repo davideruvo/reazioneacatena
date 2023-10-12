@@ -8,6 +8,10 @@ import { SITE } from "#utils/constants";
 
 export default function Layout({ children }) {
   const mainRef = React.useRef();
+  const [navbarVisible, setNavbarVisible] = React.useState(false);
+  const toggleNavbar = () => {
+    setNavbarVisible(!navbarVisible);
+  };
 
   return (
     <>
@@ -16,9 +20,9 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppContextProvider>
-        <Header />
+        <Header toggleNavbar={toggleNavbar} />
         <div ref={mainRef} style={{ padding: 10 }}>
-          <Main containerRef={mainRef} />
+          <Main containerRef={mainRef} navbarVisible={navbarVisible} />
           {children}
         </div>
       </AppContextProvider>

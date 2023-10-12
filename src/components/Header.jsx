@@ -4,12 +4,12 @@ import HeaderActions from "#components/HeaderActions";
 import styles from "#styles/header.module.sass";
 import { SITE } from "#utils/constants";
 
-const Header = () => {
+const Header = ({ toggleNavbar }) => {
   return (
     <>
       <header className={styles.main}>
         {SITE.title}
-        <HeaderActions />
+        <HeaderActions toggleNavbar={toggleNavbar} />
       </header>
     </>
   );

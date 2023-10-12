@@ -10,4 +10,10 @@ const STATUS = {
   error: "ERROR",
 };
 
-export { CONFIG, SITE, STATUS };
+const GAMESTATUS = {
+  notStarted: "NOTSTARTED",
+  running: "RUNNING",
+  complete: "COMPLETE",
+};
+
+export { CONFIG, SITE, STATUS, GAMESTATUS };

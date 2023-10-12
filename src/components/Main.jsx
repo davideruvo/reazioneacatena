@@ -12,7 +12,7 @@ import { useAppContext } from "#utils/appContext";
 import { STATUS } from "#utils/constants";
 import navbarData from "#utils/navbarData";
 
-const Main = ({ containerRef }) => {
+const Main = ({ containerRef, navbarVisible }) => {
   const {
     appContext: { status },
   } = useAppContext();
@@ -27,6 +27,7 @@ const Main = ({ containerRef }) => {
         data={navbarData}
         navbarCurrent={navbarCurrent}
         setNavbarCurrent={setNavbarCurrent}
+        visible={navbarVisible}
       />
       {status === STATUS.loading && <Loader />}
       {status === STATUS.error && <ErrorHandler />}

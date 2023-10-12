@@ -48,18 +48,39 @@
   ],
   "games": [
     {
-      "id": "dTfO8I",
-      "title": "Reazione a catena",
-      "n": 12,
-      "words": "asd\nefefef\nfe\nf\nefef",
-      "gameType": "Catena"
+      "id": "xInd99",
+      "title": "Una tira l'altra",
+      "n": 2,
+      "words": "Aaaaaa\nBbbbb\nCcccc\nDddd\nEeeeee",
+      "gameType": "Sequenza"
+    },
+    {
+      "id": "fNpd8B",
+      "title": "Zip",
+      "n": 3,
+      "words": "Nave\nScuola\nBallo\nPinguino",
+      "gameType": "Zip"
     },
     {
       "id": "KdTUWX",
       "title": "L'intesa vincente",
-      "n": 20,
+      "n": 4,
       "words": "Casa\nCane\nRoma\nMilano",
       "gameType": "Gallery"
+    },
+    {
+      "id": "dTfO8I",
+      "title": "Catena finale",
+      "n": 5,
+      "words": "asd\nefefef\nfe\nf\nefef",
+      "gameType": "Catena"
+    },
+    {
+      "id": "nMyGoL",
+      "title": "La prima catena",
+      "n": 1,
+      "words": "aaaaaa\nbbbbb\ncccccc\ndddddd\neeeeeee",
+      "gameType": "Catena"
     }
   ]
 }
