@@ -1,4 +1,5 @@
 import DataManager from "#components/DataManager";
+import { SEQUENCETYPE } from "#utils/constants";
 
 const DataRules = ({ offsetBottom }) => {
   const fields = {
@@ -26,7 +27,11 @@ const DataRules = ({ offsetBottom }) => {
         des: "Tipo",
         type: "list",
         width: 2,
-        values: { Vuoto: "Vuoto", Alternato: "Alternato", Gallery: "Gallery" },
+        values: Object.assign(
+          ...Object.keys(SEQUENCETYPE).map((k) => ({
+            [SEQUENCETYPE[k]]: SEQUENCETYPE[k],
+          })),
+        ),
       },
       {
         key: "playAll",

@@ -1,21 +1,43 @@
 .controls
     display: flex
     flex-direction: column
-.gameTitle
+.gameTitleContainer
     display: flex
     justify-content: space-between
+    margin: 10px 0 5px 0
+.gameTitle, .gameIndex
     padding: 5px
+    border: 2px inset var(--primary-bgcolor)
+    border-radius: 10px
+.gameBoardContainer
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    margin: 10px auto
 .gameBoard
     display: flex
     flex-direction: column
     gap: 5px
-    border: 1px solid red
-    border-radius: 20px
     width: 50%
-    margin: auto
 .word
-    background-color: blue
-    border: 2px solid gray
-    border-radius: 10px
-    padding: 5px
+    height: var(--word-height)
+    color: var(--word-fgcolor)
+    border: var(--word-border)
+    border-radius: var(--word-border-radius)
+    padding: 2px 10px
     text-transform: uppercase
+    text-align: center
+    font-size: var(--word-fontsize)
+.wordSequence
+    background-color: var(--word-sequence-bgcolor)
+    text-align: left
+.wordChain
+    background-color: var(--word-chain-bgcolor)
+.wordGallery
+    background-color: var(--word-gallery-bgcolor)
+.wordComplete
+    background-color: var(--word-complete-bgcolor)
+    transition: 0.5s
+.wordCurrent
+    border: var(--word-current-border)

@@ -1,7 +1,7 @@
 const CONFIG = { fetchDelay: 0 };
 
 const SITE = {
-  title: "Site Title Site Title Site Title",
+  title: "Reazione a catena",
 };
 
 const STATUS = {
@@ -11,9 +11,14 @@ const STATUS = {
 };
 
 const GAMESTATUS = {
-  notStarted: "NOTSTARTED",
+  notRunning: "NOTRUNNING",
   running: "RUNNING",
-  complete: "COMPLETE",
 };
 
-export { CONFIG, SITE, STATUS, GAMESTATUS };
+const SEQUENCETYPE = {
+  empty: "Vuoto",
+  alternate: "Alternato",
+  gallery: "Gallery",
+};
+
+export { CONFIG, SITE, STATUS, GAMESTATUS, SEQUENCETYPE };

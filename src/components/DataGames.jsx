@@ -12,7 +12,7 @@ const DataGames = ({ offsetBottom }) => {
   React.useEffect(() => {
     if (responseGet) {
       setRules(
-        Object.assign({}, ...responseGet.map((x) => ({ [x.name]: x.name }))),
+        Object.assign(...responseGet.map((x) => ({ [x.name]: x.name }))),
       );
     }
   }, [responseGet]);

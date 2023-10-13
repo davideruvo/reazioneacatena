@@ -4,15 +4,15 @@
   },
   "players": [
     {
-      "id": "8MCOtc",
-      "name": "Squadra Rossa",
+      "id": "yNeqHM",
+      "name": "Squadra A",
       "color": "#f44336",
       "n": 1
     },
     {
-      "id": "j8HvNr",
-      "name": "Squadra Blu",
-      "color": "#2196f3",
+      "id": "VzaOcA",
+      "name": "Squadra B",
+      "color": "#9c27b0",
       "n": 2
     }
   ],
@@ -48,38 +48,38 @@
   ],
   "games": [
     {
+      "id": "nMyGoL",
+      "title": "La prima catena",
+      "n": 1,
+      "words": "libertà\nstampa\nfresco\nlatte\ndente",
+      "gameType": "Catena"
+    },
+    {
       "id": "xInd99",
       "title": "Una tira l'altra",
       "n": 2,
-      "words": "Aaaaaa\nBbbbb\nCcccc\nDddd\nEeeeee",
+      "words": "carrello\nspesa\ncresta\ngallo\ncanto\nnatale\npresepe",
       "gameType": "Sequenza"
     },
     {
       "id": "fNpd8B",
       "title": "Zip",
       "n": 3,
-      "words": "Nave\nScuola\nBallo\nPinguino",
+      "words": "Favola\nmorale\nschiaffo\nfaccia",
       "gameType": "Zip"
     },
     {
       "id": "KdTUWX",
       "title": "L'intesa vincente",
       "n": 4,
-      "words": "Casa\nCane\nRoma\nMilano",
+      "words": "Casa\nCane\nRoma\nMilano\nMessico",
       "gameType": "Gallery"
     },
     {
       "id": "dTfO8I",
       "title": "Catena finale",
       "n": 5,
-      "words": "asd\nefefef\nfe\nf\nefef",
-      "gameType": "Catena"
-    },
-    {
-      "id": "nMyGoL",
-      "title": "La prima catena",
-      "n": 1,
-      "words": "aaaaaa\nbbbbb\ncccccc\ndddddd\neeeeeee",
+      "words": "immobile\nstatua\nlibertà\nstampa\nfresco\nlatte\ndente\nleone\nbocca\nbacio\ndama",
       "gameType": "Catena"
     }
   ]

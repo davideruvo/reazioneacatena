@@ -1,19 +1,44 @@
-import React from "react";
+import { Button } from "#components/Utils";
 
-const Scores = ({ scores }) => {
+import styles from "#styles/scores.module.sass";
+
+const Scores = ({ scores, scoreActions }) => {
   return (
-    <div>
+    <div className={styles.container}>
       {scores.map((p) => (
         <div
-          style={{
-            display: "inline-block",
-            borderRadius: 10,
-            padding: 5,
-            backgroundColor: p.color,
-          }}
+          className={styles.item}
+          style={{ backgroundColor: p.color }}
           key={p.id}
         >
           {p.name}
+          <div className={styles.scoreControls}>
+            <Button
+              title="-1"
+              ico="minus"
+              size="l"
+              style={{
+                backgroundColor: p.color,
+                borderColor: p.color,
+                borderWidth: 2,
+              }}
+              onClick={() => scoreActions.remove(p.id)}
+            />
+            <div className={styles.scoreValue} style={{ borderColor: p.color }}>
+              {p.score}
+            </div>
+            <Button
+              title="+1"
+              ico="plus"
+              size="l"
+              style={{
+                backgroundColor: p.color,
+                borderColor: p.color,
+                borderWidth: 2,
+              }}
+              onClick={() => scoreActions.add(p.id)}
+            />
+          </div>
         </div>
       ))}
     </div>
