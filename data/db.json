@@ -48,38 +48,45 @@
   ],
   "games": [
     {
-      "id": "nMyGoL",
-      "title": "La prima catena",
-      "n": 1,
-      "words": "libertà\nstampa\nfresco\nlatte\ndente",
-      "gameType": "Catena"
-    },
-    {
       "id": "xInd99",
       "title": "Una tira l'altra",
-      "n": 2,
-      "words": "carrello\nspesa\ncresta\ngallo\ncanto\nnatale\npresepe",
+      "n": 1,
+      "words": "Liberazione\nEsodo\nMosè\nSerpente\nAlbero\nFrutto\nSpirito\nVerità\nPilato\nMani",
       "gameType": "Sequenza"
     },
     {
       "id": "fNpd8B",
       "title": "Zip",
+      "n": 2,
+      "words": "Compenso\nSalario\nMorte\nNemico",
+      "gameType": "Zip"
+    },
+    {
+      "id": "dTfO8I",
+      "title": "Una tira l’altra",
       "n": 3,
-      "words": "Favola\nmorale\nschiaffo\nfaccia",
+      "words": "Uomo\nAdamo\nCostola\nOsso\nLingua\nTraduzione\nBibbia\nParola\nGesù\nMichele",
+      "gameType": "Sequenza"
+    },
+    {
+      "id": "hVQ9Bm",
+      "title": "Zip",
+      "n": 4,
+      "words": "Carne\nOpere\nFede\nOcchi",
       "gameType": "Zip"
     },
     {
       "id": "KdTUWX",
       "title": "L'intesa vincente",
-      "n": 4,
-      "words": "Casa\nCane\nRoma\nMilano\nMessico",
+      "n": 5,
+      "words": "acqua\ncaldo\npoltrona\ncioccolato\nmontagna\nformaggio\nbanana\nscopa\npollo\npomodori\ngiocare\npiede\nsaltare\ncinema\nnonno\nsedia\narcobaleno\norso\nmartello\nfrutta\nmela\nvasca\nsette\nsqualo\nuova\nculla\ncoltello\npalla\nlattuga\nmucca\npulito\nmalato\nspalla\nragazza\nanatra\ndadi",
       "gameType": "Gallery"
     },
     {
-      "id": "dTfO8I",
-      "title": "Catena finale",
-      "n": 5,
-      "words": "immobile\nstatua\nlibertà\nstampa\nfresco\nlatte\ndente\nleone\nbocca\nbacio\ndama",
+      "id": "EOKZk7",
+      "title": "La catena finale",
+      "n": 6,
+      "words": "Tavolette\nTestimonianza\nLettera\nGiacomo\nFratello\nAmico\nLeale\nAmore\nDenaro\nProtezione\nArmatura",
       "gameType": "Catena"
     }
   ]

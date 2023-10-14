@@ -8,7 +8,7 @@ const Scores = ({ scores, scoreActions }) => {
       {scores.map((p) => (
         <div
           className={styles.item}
-          style={{ backgroundColor: p.color }}
+          style={{ backgroundColor: p.color, borderColor: p.color }}
           key={p.id}
         >
           {p.name}
