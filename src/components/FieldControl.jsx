@@ -61,20 +61,34 @@ const FieldControl = ({ field, value, editMode, handleChange, hasError }) => {
         ) : (
           <span title={value ? "Sì" : "No"}>{value ? "Sì" : "No"}</span>
         ))}
-      {field.type === "list" &&
+      {(field.type === "list" || field.type === "multilist") &&
         (editMode ? (
           <select
-            onChange={(e) => handleChange(field.key, e.target.value)}
+            multiple={field.type === "multilist"}
+            onChange={(e) =>
+              handleChange(
+                field.key,
+                field.type === "multilist"
+                  ? Object.keys(e.target.selectedOptions).map(
+                      (o) => e.target.selectedOptions[o].value,
+                    )
+                  : e.target.value,
+              )
+            }
             value={value}
             className={hasError ? "error" : ""}
           >
-            <option value=""></option>
+            {field.type !== "multilist" && <option value=""></option>}
             {Object.keys(field.values).map((k) => (
               <option key={k} value={k}>
                 {field.values[k]}
               </option>
             ))}
           </select>
+        ) : field.type === "multilist" ? (
+          <span title={value.length ? value.join("; ") : "(nessun valore)"}>
+            {value.length ? value.join("; ") : "-"}
+          </span>
         ) : (
           <span title={field.values ? field.values[value] : ""}>
             {field.values ? field.values[value] : ""}
