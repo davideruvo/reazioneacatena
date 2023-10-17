@@ -209,7 +209,7 @@ const ListViewDetail = ({
       (k) =>
         fields.list.find((f) => f.key === k)?.type !== "bool" &&
         !fields.list.find((f) => f.key === k)?.optional &&
-        (typeof values[k] === "undefined" || values[k] === ""),
+        (typeof values[k] === "undefined" || values[k] === "" || (Array.isArray(values[k]) && values[k].length===0)),
     );
   };
   const [detail, setDetail] = React.useState({
