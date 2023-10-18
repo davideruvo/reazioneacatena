@@ -61,7 +61,9 @@ const ListView = ({
       <ListViewHeader fields={fields} fieldsList={fields.listView} />
       <ListViewActions
         handleSearch={handleSearch}
-        handleNew={editable &&  (!maxItems || data.length < maxItems) ? handleNew : null}
+        handleNew={
+          editable && (!maxItems || data.length < maxItems) ? handleNew : null
+        }
       />
       <ListViewRows
         fields={fields}
@@ -111,19 +113,19 @@ const ListViewActions = ({ handleNew, handleSearch }) => {
         </li>
       )}
       {handleNew && (
-          <li className={styles.row}>
-            <ButtonBar
-              size="s"
-              buttons={[
-                {
-                  ico: "plus",
-                  title: "Nuovo",
-                  onClick: handleNew,
-                },
-              ]}
-            />
-          </li>,
-        )}
+        <li className={styles.row}>
+          <ButtonBar
+            size="s"
+            buttons={[
+              {
+                ico: "plus",
+                title: "Nuovo",
+                onClick: handleNew,
+              },
+            ]}
+          />
+        </li>
+      )}
     </ul>
   );
 };
@@ -209,7 +211,9 @@ const ListViewDetail = ({
       (k) =>
         fields.list.find((f) => f.key === k)?.type !== "bool" &&
         !fields.list.find((f) => f.key === k)?.optional &&
-        (typeof values[k] === "undefined" || values[k] === "" || (Array.isArray(values[k]) && values[k].length===0)),
+        (typeof values[k] === "undefined" ||
+          values[k] === "" ||
+          (Array.isArray(values[k]) && values[k].length === 0)),
     );
   };
   const [detail, setDetail] = React.useState({
@@ -219,7 +223,6 @@ const ListViewDetail = ({
   const [confirm, setConfirm] = React.useState(null);
 
   const handleChange = (key, value) => {
-    
     setDetail((detail) => {
       const newValues = { ...detail.values, [key]: value };
       return {

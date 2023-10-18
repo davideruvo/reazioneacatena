@@ -2,20 +2,7 @@
   "configuration": {
     "useDarkTheme": true
   },
-  "players": [
-    {
-      "id": "yNeqHM",
-      "name": "I LAMANTINI",
-      "color": "#f44336",
-      "n": 1
-    },
-    {
-      "id": "VzaOcA",
-      "name": "GLI SFATICATI",
-      "color": "#3f51b5",
-      "n": 2
-    }
-  ],
+  "players": [],
   "rules": [
     {
       "id": "UiV16o",
