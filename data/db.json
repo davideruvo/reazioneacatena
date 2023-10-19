@@ -2,7 +2,20 @@
   "configuration": {
     "useDarkTheme": true
   },
-  "players": [],
+  "players": [
+    {
+      "id": "gGJIHa",
+      "name": "a",
+      "color": "#f44336",
+      "n": 1
+    },
+    {
+      "id": "B8KkTs",
+      "name": "b",
+      "color": "#673ab7",
+      "n": 2
+    }
+  ],
   "rules": [
     {
       "id": "UiV16o",
