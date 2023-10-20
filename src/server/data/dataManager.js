@@ -1,6 +1,7 @@
 import JSONdb from "simple-json-db";
-console.log(process.env.DB_PATH);
-const db = new JSONdb(process.env.DB_PATH, { jsonSpaces: 2 });
+const dbPath = process.env.DB_PATH;
+const asyncWrite = process.env.DB_READONLY === "1";
+const db = new JSONdb(dbPath, { jsonSpaces: 2, asyncWrite });
 
 const dbJSON = (json) => {
   if (!json) return db.JSON();
