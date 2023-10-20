@@ -20,7 +20,7 @@ const DataRules = ({ offsetBottom }) => {
         des: "Descrizione",
         type: "longtext",
         optional: true,
-        width: 5,
+        width: 4,
       },
       {
         key: "sequenceType",
@@ -39,13 +39,19 @@ const DataRules = ({ offsetBottom }) => {
         type: "bool",
         width: 1,
       },
+      {
+        key: "useErrorStatus",
+        des: "Mostra errori",
+        type: "bool",
+        width: 1,
+      },
     ],
     key: "id",
     title: "name",
     subTitle: "id",
     sort: "name",
-    listView: ["name", "des", "sequenceType", "playAll"],
-    detailView: ["name", "des", "sequenceType", "playAll"],
+    listView: ["name", "des", "sequenceType", "playAll", "useErrorStatus"],
+    detailView: ["name", "des", "sequenceType", "playAll", "useErrorStatus"],
   };
 
   return (

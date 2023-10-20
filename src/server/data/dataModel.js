@@ -19,22 +19,24 @@ export const getByName = (key) => {
 
 const players = new collection({
   key: "players",
-  fnNew: ({ name, color, n }) => ({
+  fnNew: ({ name, color, darkText, n }) => ({
     id: uid(),
     name: name ?? "",
     color: color ?? "",
+    darkText: darkText ?? "",
     n: n ?? 0,
   }),
 });
 
 const rules = new collection({
   key: "rules",
-  fnNew: ({ name, des, sequenceType, playAll }) => ({
+  fnNew: ({ name, des, sequenceType, playAll, useErrorStatus }) => ({
     id: uid(),
     name: name ?? "",
     des: des ?? "",
     sequenceType: sequenceType ?? "",
     playAll: playAll ?? false,
+    useErrorStatus: useErrorStatus ?? false,
   }),
 });
 

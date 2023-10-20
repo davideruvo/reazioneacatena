@@ -3,12 +3,11 @@
     width: 100%
     justify-content: space-between
 .item
-    width: 40%
-    border: 2px outset transparent
+    width: calc((100% - 10px) / 2)
+    border: 3px outset transparent
     border-radius: 10px
     padding: 5px
     text-align: center
-    color: var(--score-fgcolor)
     text-transform: uppercase
 .scoreControls
     display: flex
@@ -17,6 +16,6 @@
     gap: 5px
 .scoreValue
     height: 36px
-    width: 50px
+    width: 100px
     padding: 4px
     border: 2px inset transparent

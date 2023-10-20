@@ -12,6 +12,7 @@ const defaultGame = {
   words: {
     list: [],
     current: null,
+    isError: false,
   },
 };
 
@@ -72,6 +73,14 @@ const gameReducer = (game, action) => {
           current,
         },
       };
+    case "setError":
+      return {
+        ...game,
+        words: {
+          ...game.words,
+          isError: true,
+        },
+      };
     case "setNextWord":
       const newValue =
         (isNaN(game.words.current) ? 0 : Number(game.words.current)) + 1;
@@ -121,6 +130,7 @@ const gameReducer = (game, action) => {
                 : w.letters + 1,
           })),
           current: isCompleting ? null : game.words.current,
+          isError: false,
         },
       };
     case "addScore":
@@ -165,7 +175,13 @@ const useGame = () => {
     init: (words) => dispatch({ type: "initWords", words }),
     setCurrent: (current) => dispatch({ type: "setCurrentWord", current }),
     right: () => dispatch({ type: "setRightAnswer" }),
-    wrong: () => dispatch({ type: "setWrongAnswer" }),
+    wrong: (withErrorStatus) => {
+      if (withErrorStatus) dispatch({ type: "setError" });
+      window.setTimeout(
+        () => dispatch({ type: "setWrongAnswer" }),
+        withErrorStatus ? 1500 : 0,
+      );
+    },
     next: () => dispatch({ type: "setNextWord" }),
   };
   const scoreActions = {

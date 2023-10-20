@@ -66,11 +66,15 @@ const PlayBoard = ({ game, wordActions }) => {
               <PlayWord
                 key={i}
                 word={w}
-                wordClass={`${
-                  wordIsComplete(w)
-                    ? styles.wordComplete
-                    : wordClasses[sequenceType]
-                } ${words.current === w.full ? styles.wordCurrent : ""}`}
+                wordClass={`${wordClasses[sequenceType]} ${
+                  wordIsComplete(w) ? styles.wordComplete : ""
+                }  ${
+                  words.current === w.full
+                    ? words.isError
+                      ? styles.wordError
+                      : styles.wordCurrent
+                    : ""
+                }`}
                 handleClick={wordIsComplete(w) ? null : handleActivateWord}
               />
             ))}

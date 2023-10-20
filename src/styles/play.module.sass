@@ -1,14 +1,12 @@
 .controls
     display: flex
-    flex-direction: column
+    flex-direction: column-reverse
+    flex-reverse
 .gameTitleContainer
     display: flex
     justify-content: space-between
-    margin: 10px 0 5px 0
 .gameTitle, .gameIndex
-    padding: 5px
-    border: 2px inset var(--primary-bgcolor)
-    border-radius: 10px
+    padding: 2px 5px 5px 5px    
 .gameBoardContainer
     display: flex
     align-items: center
@@ -23,21 +21,55 @@
 .word
     height: var(--word-height)
     color: var(--word-fgcolor)
-    border: var(--word-border)
-    border-radius: 10px
-    padding: 2px 10px
+    border: 3px outset transparent
+    border-radius: 15px 5px 25px 5px
+    padding: 0 10px
     text-transform: uppercase
-    text-align: center
     font-size: var(--word-fontsize)
 .wordSequence
     background-color: var(--word-sequence-bgcolor)
+    border-color: var(--word-sequence-bgcolor)
     text-align: left
 .wordChain
     background-color: var(--word-chain-bgcolor)
+    border-color: var(--word-chain-bgcolor)
+    text-align: center
 .wordGallery
     background-color: var(--word-gallery-bgcolor)
+    border-color: var(--word-gallery-bgcolor)
+    text-align: center
+.wordCurrent
+    border-color: var(--word-current-bordercolor)
 .wordComplete
     background-color: var(--word-complete-bgcolor)
+    border-color: var(--word-complete-bgcolor)
+    animation-name: vh-scale
+    animation-duration: 0.5s
+    text-align: center
     transition: 0.5s
-.wordCurrent
-    border: var(--word-current-border)
+
+.wordError
+    background-color: var(--word-error-bgcolor)
+    border-color: var(--word-error-bgcolor)
+    animation-name: h-shake
+    animation-duration: 0.3s
+
+@keyframes h-shake
+    0%
+        transform: translateX(0)
+    25%
+        transform: translateX(5px)
+    50%
+        transform: translateX(-5px)
+    75%
+        transform: translateX(5px)
+    100%
+        transform: translateX(0)
+
+@keyframes vh-scale
+    0%, 100%
+        transform: scaleY(1)
+    25%, 75%
+        transform: scaleY(1.1)
+    50%
+        transform: scaleY(1.2)

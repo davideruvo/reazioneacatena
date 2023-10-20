@@ -24,10 +24,10 @@ const Play = () => {
   }, [responseGet]);
   return (
     <>
-      <PlayScores scores={game.scores} scoreActions={scoreActions} />
       {rounds.list.length > 0 && (
         <PlayControls {...{ game, gameActions, wordActions }} />
       )}
+      <PlayScores scores={game.scores} scoreActions={scoreActions} />
       {game.status === GAMESTATUS.running && (
         <PlayBoard {...{ game, wordActions }} />
       )}

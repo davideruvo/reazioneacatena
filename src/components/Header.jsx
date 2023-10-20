@@ -8,7 +8,6 @@ const Header = ({ toggleNavbar }) => {
   return (
     <>
       <header className={styles.main}>
-        {SITE.title}
         <HeaderActions toggleNavbar={toggleNavbar} />
       </header>
     </>
