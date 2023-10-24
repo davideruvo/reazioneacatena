@@ -1,7 +1,3 @@
-import ShortUniqueId from "short-unique-id";
-
-const uid = new ShortUniqueId();
-
 import { collection } from "#server/data/dataManager";
 
 export const getByName = (key) => {
@@ -22,7 +18,6 @@ export const getByName = (key) => {
 const players = new collection({
   key: "players",
   fnNew: ({ name, color, darkText, n }) => ({
-    id: uid(),
     name: name ?? "",
     color: color ?? "",
     darkText: darkText ?? "",
@@ -33,7 +28,6 @@ const players = new collection({
 const rules = new collection({
   key: "rules",
   fnNew: ({ name, des, sequenceType, playAll, useErrorStatus }) => ({
-    id: uid(),
     name: name ?? "",
     des: des ?? "",
     sequenceType: sequenceType ?? "",
@@ -45,7 +39,6 @@ const rules = new collection({
 const games = new collection({
   key: "games",
   fnNew: ({ title, n, words, gameType }) => ({
-    id: uid(),
     title: title ?? "",
     n: n ?? 0,
     words: words ?? "",

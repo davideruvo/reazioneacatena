@@ -1,0 +1,13 @@
+Collection.create({ name: "configuration",  history_days: 0 });
+Collection.create({ name: "players",  history_days: 0 });
+Collection.create({ name: "rules",  history_days: 0 });
+Collection.create({ name: "games",  history_days: 0 });
+Role.create({ name: "Client",
+    privileges: [
+		{resource: "configuration",actions: {create: true,read: true,write: true,delete: true}},
+		{resource: "players",actions: {create: true,read: true,write: true,delete: true}},
+		{resource: "rules",actions: {create: true,read: true,write: true,delete: true}},
+		{resource: "games",actions: {create: true,read: true,write: true,delete: true}},
+	],
+});
+Key.create({ role: "Client" })

@@ -2,18 +2,10 @@
   "configuration": [
     {
       "key": "useDarkTheme",
-      "value": false
+      "value": true
     }
   ],
-  "players": [
-    {
-      "id": "Xd7BQm",
-      "name": "a",
-      "color": "#000000",
-      "darkText": false,
-      "n": 1
-    }
-  ],
+  "players": [],
   "rules": [
     {
       "id": "UiV16o",
