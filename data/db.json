@@ -2,22 +2,7 @@
   "configuration": {
     "useDarkTheme": true
   },
-  "players": [
-    {
-      "id": "MkTrkV",
-      "name": "Gli allesi🐂🐂",
-      "color": "#f44336",
-      "darkText": "",
-      "n": 2
-    },
-    {
-      "id": "ERM1oz",
-      "name": "Le 🆘",
-      "color": "#9c27b0",
-      "darkText": "",
-      "n": 1
-    }
-  ],
+  "players": [],
   "rules": [
     {
       "id": "UiV16o",
