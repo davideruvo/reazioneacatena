@@ -1,12 +1,12 @@
-import { dbJSON } from "#server/data/dataManager";
+import { dbData } from "#server/data/dataManager";
 
 const handler = (req, res) => {
   switch (req.method) {
     case "GET":
-      res.status(200).json(dbJSON());
+      res.status(200).json(dbData());
       break;
     case "PUT":
-      dbJSON(req.body);
+      dbData(req.body);
       res.status(200).json({ result: true });
       break;
     default:
