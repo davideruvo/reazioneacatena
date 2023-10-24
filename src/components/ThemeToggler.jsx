@@ -6,18 +6,21 @@ import useFetch, { getReq, putReq } from "#utils/useFetch";
 const ThemeToggler = () => {
   const { response: responseGet, doFetch: doGet } = useFetch();
   const { response: responsePut, doFetch: doPut } = useFetch();
-  const useDarkTheme = responseGet ? responseGet.useDarkTheme : null;
+  const useDarkTheme = responseGet
+    ? responseGet.filter((x) => x.key === "useDarkTheme")[0]?.value
+    : null;
   const [darkTheme, setDarkTheme] = React.useState(useDarkTheme);
 
-  React.useEffect(() => doGet(getReq("/api/configuration/useDarkTheme")), []);
+  React.useEffect(() => doGet(getReq("/api/configuration/get")), []);
   React.useEffect(() => setDarkTheme(useDarkTheme), [useDarkTheme]);
   React.useEffect(() => {
     document.body.setAttribute("theme", darkTheme ? "dark" : "");
     if (darkTheme !== null)
       doPut(
         putReq("/api/configuration/useDarkTheme", {
-          useDarkTheme: darkTheme,
-        })
+          key: "useDarkTheme",
+          value: darkTheme,
+        }),
       );
   }, [darkTheme]);
 

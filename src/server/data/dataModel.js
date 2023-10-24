@@ -12,6 +12,8 @@ export const getByName = (key) => {
       return rules;
     case "games":
       return games;
+    case "configuration":
+      return configuration;
     default:
       return null;
   }
@@ -51,5 +53,14 @@ const games = new collection({
   }),
   fnGetLookups: (x) => ({
     rules: rules.findBy({ name: x.gameType }),
+  }),
+});
+
+const configuration = new collection({
+  key: "configuration",
+  keyField: "key",
+  fnNew: ({ key, value }) => ({
+    key: key ?? "",
+    value: value ?? null,
   }),
 });

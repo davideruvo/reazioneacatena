@@ -9,6 +9,7 @@ const handler = (req, res) => {
       res.status(200).json(entity.getByKey(req.query.id));
       break;
     case "PUT":
+      console.log(req.body);
       entity.setItem(req.body);
       res.status(200).json({ result: true });
       break;

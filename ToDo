@@ -1,0 +1,5 @@
+CONFIGURATION
+    Trasformare in collection
+    Non esportare mai dataObject
+Spostare id in dbJSON
+    Fauna non ne ha bisogno
