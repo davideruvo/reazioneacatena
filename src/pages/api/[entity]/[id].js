@@ -1,4 +1,4 @@
-import { getByName } from "#server/data/dataModel";
+import { getByName, isAsync } from "#server/data/dataManager";
 
 const handler = (req, res) => {
   const entity = getByName(req.query.entity);
@@ -9,7 +9,7 @@ const handler = (req, res) => {
       res.status(200).json(entity.getByKey(req.query.id));
       break;
     case "PUT":
-      entity.setItem(req.body);
+      entity.addOrUpdate(req.body);
       res.status(200).json({ result: true });
       break;
     case "DELETE":

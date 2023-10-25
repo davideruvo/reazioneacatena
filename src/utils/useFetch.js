@@ -14,7 +14,7 @@ const useFetch = () => {
         dispatch({
           status: typeof error === "undefined" ? STATUS.complete : STATUS.error,
         }),
-      CONFIG.fetchDelay
+      CONFIG.fetchDelay,
     );
   };
 

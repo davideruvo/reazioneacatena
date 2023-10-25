@@ -1,72 +1,75 @@
-const providerModule =
-  process.env.DB_SOURCE === "fauna"
-    ? "faunaDB"
-    : process.env.DB_SOURCE === "json"
-    ? "jsonDB"
-    : "jsonDB";
-const { db } = await import(`#server/data/${providerModule}`);
+// const getProviderModule = () => {
+//   switch (process.env.DB_SOURCE) {
+//     case "fauna":
+//       return "faunaDB";
+//     case "json":
+//       return "jsonDB";
+//     default:
+//       return "jsonDB";
+//   }
+// };
+// const { collection: dbCollection } = await import(
+//   `#server/data/${getProviderModule()}`
+// );
 
-const safeLowerCase = (x) =>
-  typeof x.toLowerCase === "function" ? x.toLowerCase() : x;
+import { collection, ISASYNC } from "#server/data/jsonDataProvider";
 
-const compareValue = (a, b, desc) =>
-  (safeLowerCase(a) > safeLowerCase(b)
-    ? 1
-    : safeLowerCase(a) < safeLowerCase(b)
-    ? -1
-    : 0) * (desc ? -1 : 1);
+export const isAsync = ISASYNC;
 
-const compare = (a, b, sort) =>
-  sort
-    .split("|")
-    .map((x) =>
-      compareValue(
-        a[x.replace(/^__/, "")],
-        b[x.replace(/^__/, "")],
-        x.startsWith("__"),
-      ),
-    )
-    .find((x) => x !== 0);
-
-const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
-  const self = this;
-  self.keyField = keyField ?? "id";
-
-  self.get = (options) => {
-    let result = db(key).get();
-    const { sort, lookup } = options ?? {};
-    if (lookup && typeof self.getLookups === "function")
-      result = db(key)
-        .get()
-        .map((x) => ({ ...x, ...self.getLookups(x) }));
-    if (sort) result = result.sort((a, b) => compare(a, b, sort));
-    return result;
-  };
-  self.getLookups = fnGetLookups;
-  self.add = (...items) => {
-    db(key).add(...items);
-  };
-  self.update = (newItem) => {
-    db(key).update({ [self.keyField]: self.getKey(newItem) }, newItem);
-  };
-  self.remove = (item) => db(key).remove(item);
-  self.filterBy = (filter) =>
-    self
-      .get()
-      .filter((x) => Object.keys(filter).every((k) => filter[k] === x[k]));
-  self.findBy = (filter) => [...self.filterBy(filter)][0];
-  self.new = (obj) => ({ ...fnNew(obj) });
-  self.getKey = (item) => item[self.keyField];
-  self.getByKey = (k) =>
-    self.exists(k) ? self.get().filter((x) => self.getKey(x) === k)[0] : null;
-  self.exists = (k) => self.get().some((x) => self.getKey(x) === k);
-  self.setItem = (newItem) => {
-    self.exists(self.getKey(newItem))
-      ? self.update(newItem)
-      : self.add(newItem);
-  };
-
-  return self;
+export const getByName = (key) => {
+  switch (key) {
+    case "players":
+      return players;
+    case "rules":
+      return rules;
+    case "games":
+      return games;
+    case "configuration":
+      return configuration;
+    default:
+      return null;
+  }
 };
 
-export { collection };
+const players = new collection({
+  name: "players",
+  fnNew: ({ name, color, darkText, n }) => ({
+    name: name ?? "",
+    color: color ?? "",
+    darkText: darkText ?? false,
+    n: n ?? 0,
+  }),
+});
+
+const rules = new collection({
+  name: "rules",
+  fnNew: ({ name, des, sequenceType, playAll, useErrorStatus }) => ({
+    name: name ?? "",
+    des: des ?? "",
+    sequenceType: sequenceType ?? "",
+    playAll: playAll ?? false,
+    useErrorStatus: useErrorStatus ?? false,
+  }),
+});
+
+const games = new collection({
+  name: "games",
+  fnNew: ({ title, n, words, gameType }) => ({
+    title: title ?? "",
+    n: n ?? 0,
+    words: words ?? "",
+    gameType: gameType ?? "",
+  }),
+  fnGetLookups: (x) => ({
+    rules: rules.query({ name: x.gameType })[0],
+  }),
+});
+
+const configuration = new collection({
+  name: "configuration",
+  keyFieldName: "key",
+  fnNew: ({ key, value }) => ({
+    key: key ?? "",
+    value: value ?? null,
+  }),
+});
