@@ -4,7 +4,7 @@ const providerModule =
     : process.env.DB_SOURCE === "json"
     ? "jsonDB"
     : "jsonDB";
-const { db, newItemBase } = await import(`#server/data/${providerModule}`);
+const { db } = await import(`#server/data/${providerModule}`);
 
 const safeLowerCase = (x) =>
   typeof x.toLowerCase === "function" ? x.toLowerCase() : x;
@@ -49,26 +49,27 @@ const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
   self.add = (...items) => {
     db(key).add(...items);
   };
+  self.update = (key, newItem) => {
+    self.set(
+      ...self
+        .get()
+        .map((x) => (self.getKey(x) === key ? { ...x, ...newItem } : x)),
+    );
+  };
   self.remove = (item) => db(key).remove(item);
   self.filterBy = (filter) =>
     self
       .get()
       .filter((x) => Object.keys(filter).every((k) => filter[k] === x[k]));
   self.findBy = (filter) => [...self.filterBy(filter)][0];
-  self.new = (obj) => ({ ...newItemBase(), ...fnNew(obj) });
+  self.new = (obj) => ({ ...fnNew(obj) });
   self.getKey = (item) => item[keyField ?? "id"];
   self.getByKey = (k) =>
     self.exists(k) ? self.get().filter((x) => self.getKey(x) === k)[0] : null;
   self.exists = (k) => self.get().some((x) => self.getKey(x) === k);
   self.setItem = (newItem) => {
     const key = self.getKey(newItem);
-    self.exists(key)
-      ? self.set(
-          ...self
-            .get()
-            .map((x) => (self.getKey(x) === key ? { ...x, ...newItem } : x)),
-        )
-      : self.add(newItem);
+    self.exists(key) ? self.update(key, newItem) : self.add(newItem);
   };
 
   return self;

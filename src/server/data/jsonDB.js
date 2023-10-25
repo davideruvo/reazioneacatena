@@ -4,20 +4,37 @@ import ShortUniqueId from "short-unique-id";
 const jsonDB = new JSONdb(process.env.JSONDB_PATH, { jsonSpaces: 2 });
 const uid = new ShortUniqueId();
 
-const newItemBase = () => ({ id: uid() });
 const db = (collection) => {
-  const getCollection = () => jsonDB.get(collection);
-  const setCollection = (...items) => jsonDB.set(collection, items);
+  const getData = (where) => {
+    const data = jsonDB.get(collection);
+    if (!where) return data;
+    return data.filter((x) =>
+      Object.keys(where).every((k) => where[k] === x[k]),
+    );
+  };
+  const setData = (...items) => jsonDB.set(collection, items);
   return {
-    get: () => getCollection(),
-    set: (...items) => setCollection(...items),
+    get: (where) => getData(where),
+    set: (...items) => setData(...items),
     add: (...items) => {
-      setCollection(...getCollection(), ...items);
+      setData(...getData(), ...items.map((x) => ({ id: uid(), ...x })));
     },
-    update: () => {},
-    remove: (item) => {
-      setCollection(...getCollection().filter((x) => x !== item));
+    update: (where, newItem) => {
+      const toUpdate = getData(where);
+      if (!toUpdate.length) return;
+      setData(
+        ...getData().map((x) =>
+          toUpdate.filter((y) => x === y).length ? { ...x, ...newItem } : x,
+        ),
+      );
+    },
+    remove: (where) => {
+      const toDelete = getData(where);
+      if (!toDelete.length) return;
+      setData(
+        ...getData().filter((x) => !toDelete.filter((y) => x === y).length),
+      );
     },
   };
 };
-export { db, newItemBase };
+export { db };
