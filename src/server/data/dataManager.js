@@ -1,13 +1,10 @@
-import jsonDB, { newItem } from "#server/data/jsonDB";
-import faunaDB from "#server/data/faunaDB";
-const dbProvider =
-  process.env.DB_SOURCE === "json"
-    ? { db: jsonDB, newItem }
-    : process.env.DB_SOURCE === "fauna"
-    ? { db: faunaDB, newItem: () => ({}) }
-    : null;
-
-const { db, newItem: dbNew } = dbProvider;
+const providerModule =
+  process.env.DB_SOURCE === "fauna"
+    ? "faunaDB"
+    : process.env.DB_SOURCE === "json"
+    ? "jsonDB"
+    : "jsonDB";
+const { db, newItemBase } = await import(`#server/data/${providerModule}`);
 
 const safeLowerCase = (x) =>
   typeof x.toLowerCase === "function" ? x.toLowerCase() : x;
@@ -31,12 +28,9 @@ const compare = (a, b, sort) =>
     )
     .find((x) => x !== 0);
 
-const dataObject = function ({ key, defaultValue, fnGetLookups }) {
+const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
   const self = this;
 
-  if (!db.has(key)) db.set(key, defaultValue ?? {});
-
-  self.getLookups = fnGetLookups;
   self.get = (options) => {
     let result = db.get(key);
     const { sort, lookup } = options ?? {};
@@ -45,24 +39,7 @@ const dataObject = function ({ key, defaultValue, fnGetLookups }) {
     if (sort) result = result.sort((a, b) => compare(a, b, sort));
     return result;
   };
-  self.update = (newValues) => self.set({ ...self.get(), ...newValues });
-
-  return self;
-};
-
-const collection = function ({
-  key,
-  keyField,
-  defaultValue,
-  fnNew,
-  fnGetLookups,
-}) {
-  const self = new dataObject({
-    key,
-    defaultValue: defaultValue ?? [],
-    fnGetLookups,
-  });
-
+  self.getLookups = fnGetLookups;
   self.set = (...items) => {
     db.set(key, items);
     return items.map((x) => self.getKey(x));
@@ -77,9 +54,8 @@ const collection = function ({
     self
       .get()
       .filter((x) => Object.keys(filter).every((k) => filter[k] === x[k]));
-  self.findBy = (filter, defaultValue) =>
-    [...self.filterBy(filter), defaultValue ?? null][0];
-  self.new = (obj) => ({ ...dbNew(), ...fnNew(obj) });
+  self.findBy = (filter) => [...self.filterBy(filter)][0];
+  self.new = (obj) => ({ ...newItemBase(), ...fnNew(obj) });
   self.getKey = (item) => item[keyField ?? "id"];
   self.getByKey = (k) =>
     self.exists(k) ? self.get().filter((x) => self.getKey(x) === k)[0] : null;
