@@ -32,24 +32,24 @@ const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
   const self = this;
 
   self.get = (options) => {
-    let result = db.get(key);
+    let result = db(key).get();
     const { sort, lookup } = options ?? {};
     if (lookup && typeof self.getLookups === "function")
-      result = db.get(key).map((x) => ({ ...x, ...self.getLookups(x) }));
+      result = db(key)
+        .get()
+        .map((x) => ({ ...x, ...self.getLookups(x) }));
     if (sort) result = result.sort((a, b) => compare(a, b, sort));
     return result;
   };
   self.getLookups = fnGetLookups;
   self.set = (...items) => {
-    db.set(key, items);
+    db(key).set(...items);
     return items.map((x) => self.getKey(x));
   };
   self.add = (...items) => {
-    self.set(...self.get(), ...items);
-    return items.map((x) => self.getKey(x));
+    db(key).add(...items);
   };
-  self.remove = (item) =>
-    self.set(...self.get().filter((x) => self.getKey(x) !== self.getKey(item)));
+  self.remove = (item) => db(key).remove(item);
   self.filterBy = (filter) =>
     self
       .get()

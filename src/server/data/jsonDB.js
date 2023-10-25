@@ -5,22 +5,19 @@ const jsonDB = new JSONdb(process.env.JSONDB_PATH, { jsonSpaces: 2 });
 const uid = new ShortUniqueId();
 
 const newItemBase = () => ({ id: uid() });
-const _get = (key) => jsonDB.get(key);
-const _set = (key, items) => jsonDB.set(key, items);
-const db = {
-  get: _get,
-  set: _set,
-  add: (key,...items) => {
-    _set(key, [_get(key), ...items]);
-    return items.map((x) => self.getKey(x));
-  },
-  update: () => {},
-  remove: () => {},
+const db = (collection) => {
+  const getCollection = () => jsonDB.get(collection);
+  const setCollection = (...items) => jsonDB.set(collection, items);
+  return {
+    get: () => getCollection(),
+    set: (...items) => setCollection(...items),
+    add: (...items) => {
+      setCollection(...getCollection(), ...items);
+    },
+    update: () => {},
+    remove: (item) => {
+      setCollection(...getCollection().filter((x) => x !== item));
+    },
+  };
 };
 export { db, newItemBase };
-
-//get
-//set
-//  add
-//  remove
-//  update
