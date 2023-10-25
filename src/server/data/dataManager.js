@@ -30,6 +30,7 @@ const compare = (a, b, sort) =>
 
 const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
   const self = this;
+  self.keyField = keyField ?? "id";
 
   self.get = (options) => {
     let result = db(key).get();
@@ -42,19 +43,11 @@ const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
     return result;
   };
   self.getLookups = fnGetLookups;
-  self.set = (...items) => {
-    db(key).set(...items);
-    return items.map((x) => self.getKey(x));
-  };
   self.add = (...items) => {
     db(key).add(...items);
   };
-  self.update = (key, newItem) => {
-    self.set(
-      ...self
-        .get()
-        .map((x) => (self.getKey(x) === key ? { ...x, ...newItem } : x)),
-    );
+  self.update = (newItem) => {
+    db(key).update({ [self.keyField]: self.getKey(newItem) }, newItem);
   };
   self.remove = (item) => db(key).remove(item);
   self.filterBy = (filter) =>
@@ -63,13 +56,14 @@ const collection = function ({ key, keyField, fnNew, fnGetLookups }) {
       .filter((x) => Object.keys(filter).every((k) => filter[k] === x[k]));
   self.findBy = (filter) => [...self.filterBy(filter)][0];
   self.new = (obj) => ({ ...fnNew(obj) });
-  self.getKey = (item) => item[keyField ?? "id"];
+  self.getKey = (item) => item[self.keyField];
   self.getByKey = (k) =>
     self.exists(k) ? self.get().filter((x) => self.getKey(x) === k)[0] : null;
   self.exists = (k) => self.get().some((x) => self.getKey(x) === k);
   self.setItem = (newItem) => {
-    const key = self.getKey(newItem);
-    self.exists(key) ? self.update(key, newItem) : self.add(newItem);
+    self.exists(self.getKey(newItem))
+      ? self.update(newItem)
+      : self.add(newItem);
   };
 
   return self;

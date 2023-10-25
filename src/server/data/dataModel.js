@@ -20,7 +20,7 @@ const players = new collection({
   fnNew: ({ name, color, darkText, n }) => ({
     name: name ?? "",
     color: color ?? "",
-    darkText: darkText ?? "",
+    darkText: darkText ?? false,
     n: n ?? 0,
   }),
 });

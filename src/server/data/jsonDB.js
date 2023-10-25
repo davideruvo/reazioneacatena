@@ -15,12 +15,12 @@ const db = (collection) => {
   const setData = (...items) => jsonDB.set(collection, items);
   return {
     get: (where) => getData(where),
-    set: (...items) => setData(...items),
     add: (...items) => {
       setData(...getData(), ...items.map((x) => ({ id: uid(), ...x })));
     },
     update: (where, newItem) => {
       const toUpdate = getData(where);
+      console.log("toUpdate", where, toUpdate);
       if (!toUpdate.length) return;
       setData(
         ...getData().map((x) =>
