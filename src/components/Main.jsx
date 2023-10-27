@@ -11,7 +11,7 @@ import { useAppContext } from "#utils/appContext";
 import { STATUS } from "#utils/constants";
 import navbarData from "#utils/navbarData";
 
-import { Kanit } from "next/font/google";
+import { Kanit } from "@next/font/google";
 
 const kanit = Kanit({
   weight: "400",
