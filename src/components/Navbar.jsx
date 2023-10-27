@@ -3,14 +3,20 @@ import React from "react";
 import { Icon } from "#components/Utils";
 import styles from "#styles/navbar.module.sass";
 
-const Navbar = ({ data, navbarCurrent, setNavbarCurrent, visible }) => {
+const Navbar = ({
+  data,
+  navbarCurrent,
+  setNavbarCurrent,
+  visible,
+  className,
+}) => {
   React.useEffect(() => {
     setNavbarCurrent(data.filter((x) => x.cod === "play")[0]);
   }, []);
 
   return (
     visible && (
-      <header className={styles.container}>
+      <header className={`${styles.container} ${className}`}>
         <div className={styles.main}>
           <ul>
             {data.map((item, i) => (
