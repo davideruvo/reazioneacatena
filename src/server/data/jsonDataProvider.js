@@ -5,8 +5,6 @@ import { compare } from "#server/data/dataUtils";
 const jsonDB = new JSONdb(process.env.JSONDB_PATH, { jsonSpaces: 2 });
 const uid = new ShortUniqueId();
 
-const ISASYNC = false;
-
 const dbCollection = (name) => {
   const getData = (where) => {
     const data = jsonDB.get(name);
@@ -30,7 +28,7 @@ const dbCollection = (name) => {
         ),
       );
     },
-    remove: (where) => {
+    delete: (where) => {
       const toDelete = getData(where);
       if (!toDelete.length) return;
       setData(
@@ -53,7 +51,7 @@ const collection = function ({ name, keyFieldName, fnNew, fnGetLookups }) {
     let result = db.get();
     const { sort, lookup } = options ?? {};
     if (lookup && typeof self.getLookups === "function")
-      result = db.get().map((x) => ({ ...x, ...self.getLookups(x) }));
+      result = result.map((x) => ({ ...x, ...self.getLookups(x) }));
     if (sort) result = result.sort((a, b) => compare(a, b, sort));
     return result;
   };
@@ -72,9 +70,11 @@ const collection = function ({ name, keyFieldName, fnNew, fnGetLookups }) {
       ? self.update(newItem)
       : self.add(newItem);
   };
-  self.remove = (item) => db.remove(item);
+  self.delete = (key) => {
+    db.delete({ [keyField]: key });
+  };
 
   return self;
 };
 
-export { collection, ISASYNC };
+export { collection };

@@ -1,20 +1,14 @@
-// const getProviderModule = () => {
-//   switch (process.env.DB_SOURCE) {
-//     case "fauna":
-//       return "faunaDB";
-//     case "json":
-//       return "jsonDB";
-//     default:
-//       return "jsonDB";
-//   }
-// };
-// const { collection: dbCollection } = await import(
-//   `#server/data/${getProviderModule()}`
-// );
-
-import { collection, ISASYNC } from "#server/data/jsonDataProvider";
-
-export const isAsync = ISASYNC;
+const getProviderModule = () => {
+  switch (process.env.DB_SOURCE) {
+    case "fauna":
+      return "faunaDataProvider";
+    case "json":
+      return "jsonDataProvider";
+    default:
+      return "jsonDataProvider";
+  }
+};
+const { collection } = await import(`#server/data/${getProviderModule()}`);
 
 export const getByName = (key) => {
   switch (key) {
@@ -62,6 +56,9 @@ const games = new collection({
   }),
   fnGetLookups: (x) => ({
     rules: rules.query({ name: x.gameType })[0],
+  }),
+  fnGetLookupsAsync: async (x) => ({
+    rules: (await rules.queryAsync({ name: x.gameType }))[0],
   }),
 });
 
