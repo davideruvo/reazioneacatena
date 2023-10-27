@@ -11,9 +11,9 @@ import { useAppContext } from "#utils/appContext";
 import { STATUS } from "#utils/constants";
 import navbarData from "#utils/navbarData";
 
-import { Inter } from "next/font/google";
+import { Kanit } from "next/font/google";
 
-const kanit = Inter({
+const kanit = Kanit({
   weight: "400",
   subsets: ["latin"],
 });
