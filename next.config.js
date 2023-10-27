@@ -1,5 +1,3 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  optimizeFonts: false,
-}
+const nextConfig = {}
 module.exports = nextConfig
