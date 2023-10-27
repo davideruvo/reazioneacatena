@@ -1,5 +1,4 @@
 import React from "react";
-
 import ErrorHandler from "#components/ErrorHandler";
 import DataRules from "#components/DataRules";
 import DataPlayers from "#components/DataPlayers";
@@ -11,6 +10,12 @@ import styles from "#styles/main.module.sass";
 import { useAppContext } from "#utils/appContext";
 import { STATUS } from "#utils/constants";
 import navbarData from "#utils/navbarData";
+
+import { Kanit } from "next/font/google";
+const kanit = Kanit({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const Main = ({ containerRef, navbarVisible }) => {
   const {
@@ -24,6 +29,7 @@ const Main = ({ containerRef, navbarVisible }) => {
   return (
     <>
       <Navbar
+        className={kanit.className}
         data={navbarData}
         navbarCurrent={navbarCurrent}
         setNavbarCurrent={setNavbarCurrent}
@@ -32,7 +38,7 @@ const Main = ({ containerRef, navbarVisible }) => {
       {status === STATUS.loading && <Loader />}
       {status === STATUS.error && <ErrorHandler />}
       {navbarCurrent && (
-        <main className={styles.main}>
+        <main className={`${styles.main} ${kanit.className}`}>
           {navbarCurrent.cod == "games" && (
             <DataGames offsetBottom={offsetBottom} />
           )}
