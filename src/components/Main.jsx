@@ -11,13 +11,6 @@ import { useAppContext } from "#utils/appContext";
 import { STATUS } from "#utils/constants";
 import navbarData from "#utils/navbarData";
 
-import { Kanit } from "@next/font/google";
-
-const kanit = Kanit({
-  weight: "400",
-  subsets: ["latin"],
-});
-
 const Main = ({ containerRef, navbarVisible }) => {
   const {
     appContext: { status },
@@ -30,7 +23,6 @@ const Main = ({ containerRef, navbarVisible }) => {
   return (
     <>
       <Navbar
-        className={kanit.className}
         data={navbarData}
         navbarCurrent={navbarCurrent}
         setNavbarCurrent={setNavbarCurrent}
@@ -39,7 +31,7 @@ const Main = ({ containerRef, navbarVisible }) => {
       {status === STATUS.loading && <Loader />}
       {status === STATUS.error && <ErrorHandler />}
       {navbarCurrent && (
-        <main className={`${styles.main} ${kanit.className}`}>
+        <main className={styles.main}>
           {navbarCurrent.cod == "games" && (
             <DataGames offsetBottom={offsetBottom} />
           )}

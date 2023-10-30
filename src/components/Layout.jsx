@@ -6,6 +6,12 @@ import Main from "#components/Main";
 import { AppContextProvider } from "#utils/appContext";
 import { SITE } from "#utils/constants";
 
+import { Kanit } from "@next/font/google";
+const kanit = Kanit({
+  weight: "400",
+  subsets: ["latin"],
+});
+
 export default function Layout({ children }) {
   const mainRef = React.useRef();
   const [navbarVisible, setNavbarVisible] = React.useState(false);
@@ -25,7 +31,7 @@ export default function Layout({ children }) {
       </Head>
       <AppContextProvider>
         <Header toggleNavbar={toggleNavbar} />
-        <div ref={mainRef} style={{ padding: 10 }}>
+        <div ref={mainRef} style={{ padding: 10 }} className={kanit.className}>
           <Main containerRef={mainRef} navbarVisible={navbarVisible} />
           {children}
         </div>
