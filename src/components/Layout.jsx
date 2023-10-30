@@ -18,6 +18,7 @@ export default function Layout({ children }) {
       <Head>
         <title>{SITE.title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <AppContextProvider>
         <Header toggleNavbar={toggleNavbar} />
